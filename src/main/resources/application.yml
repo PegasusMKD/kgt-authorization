@@ -1,0 +1,47 @@
+server:
+  port: 8081
+
+spring:
+  h2:
+    console.enabled: true
+  application:
+    name: kgt-authorization
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+security:
+  encoding-strength: 256
+  custom-authentication:
+    duration-minutes: 480 # 8 hours
+  jwt:
+    client-id: kgtjwtclientid
+    client-secret: MtivuBUrFYEHd
+    grant-type: password
+    resource-ids: kgtjwtresourceid
+    scope-read: read
+    scope-write: write
+  security-realm: KGT JWT Realm
+  signing-key: bRJrESo3vfMfbuXr6IBA9QbT8gQs4PiY
+
+management:
+  endpoint:
+    gateway:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: kgt-gateway
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: http://localhost:8762/eureka/

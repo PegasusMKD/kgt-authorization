@@ -5,7 +5,11 @@ spring:
   h2:
     console.enabled: true
   application:
-    name: kgt-authorization
+    name: authorization
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
   datasource:
     url: jdbc:h2:mem:testdb
     driver-class-name: org.h2.Driver
@@ -40,8 +44,8 @@ management:
 
 eureka:
   instance:
+    prefer-ip-address: true
     hostname: localhost
   client:
-    registerWithEureka: true
     serviceUrl:
       defaultZone: http://localhost:8762/eureka/

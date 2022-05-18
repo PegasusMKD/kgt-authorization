@@ -1,5 +1,17 @@
 spring:
-  profiles: compose
+  h2:
+    console.enabled: false
+  config:
+    activate:
+      on-profile: compose
+  datasource:
+    driver-class-name: ${AUTHORIZATION_DATASOURCE_DRIVER}
+    url: ${AUTHORIZATION_DATASOURCE_URL}
+    username: ${AUTHORIZATION_DATASOURCE_USERNAME}
+    password: ${AUTHORIZATION_DATASOURCE_PASSWORD}
+    jpa:
+      hibernate:
+        ddl-auto: ${AUTHORIZATION_JPA_HIBERNATE_DDL_AUTO}
 
 eureka:
   client:

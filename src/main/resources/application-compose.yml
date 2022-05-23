@@ -9,9 +9,9 @@ spring:
     url: ${AUTHORIZATION_DATASOURCE_URL}
     username: ${AUTHORIZATION_DATASOURCE_USERNAME}
     password: ${AUTHORIZATION_DATASOURCE_PASSWORD}
-    jpa:
-      hibernate:
-        ddl-auto: ${AUTHORIZATION_JPA_HIBERNATE_DDL_AUTO}
+  jpa:
+    hibernate:
+      ddl-auto: ${AUTHORIZATION_JPA_HIBERNATE_DDL_AUTO}
 
 eureka:
   client:

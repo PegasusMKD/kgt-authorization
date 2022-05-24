@@ -11,14 +11,20 @@ data class Account(
     @Id
     var id: String? = null,
 
-    @Column(name = "username", length = 20)
+    @Column(name = "username", length = 20, nullable = false, unique = true)
     var username: String? = null,
 
-    @Column(name = "password", length = 255)
+    @Column(name = "password", length = 255, nullable = false)
     var password: String? = null,
 
     @Column(name = "enabled")
     var enabled: Boolean = true,
+
+    @Column(name = "firstName", nullable = false)
+    var firstName: String? = null,
+
+    @Column(name = "lastName", nullable = false)
+    var lastName: String? = null,
 
     @CollectionTable
     @Enumerated(EnumType.STRING)

@@ -1,15 +1,23 @@
-POST http://localhost:8081/authorization/register?username=admin&password=admin
+POST http://localhost:8761/authorization/authorization/register
+Authorization: Basic kgtjwtclientid MtivuBUrFYEHd
+Content-Type: application/json
+
+{
+  "username": "test",
+  "password": "test",
+  "firstName": "test",
+  "lastName": "test",
+  "roles": ["USER"]
+}
+
+###
+
+POST http://localhost:8761/authorization/oauth/token?grant_type=password&username=test&password=test
 Authorization: Basic kgtjwtclientid MtivuBUrFYEHd
 Content-Type: application/x-www-form-urlencoded
 
 ###
-
-POST http://localhost:8081/oauth/token?grant_type=password&username=admin&password=admin
-Authorization: Basic kgtjwtclientid MtivuBUrFYEHd
-Content-Type: application/x-www-form-urlencoded
-
-###
-POST http://localhost:8081/authorization/user-info
+POST http://localhost:8761/authorization/authorization/user-info
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsia2d0and0cmVzb3VyY2VpZCJdLCJ1c2VyX25hbWUiOiJhZG1pbiIsInVzZXJfZGV0YWlscyI6eyJpZCI6IjQwMjhiODgxN2VmNDFkOTUwMTdlZjQxZGUxNjUwMDAwIiwidXNlcm5hbWUiOiJhZG1pbiIsInJvbGVzIjpbIkFETUlOSVNUUkFUT1IiXX0sInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJleHAiOjE2NDQ4MDE5NTIsImF1dGhvcml0aWVzIjpbIkFETUlOSVNUUkFUT1IiXSwianRpIjoiZTgwM2IyNTMtNGJjYy00ODUxLWFhMGQtMzJkNWIxOTU5MTMzIiwiY2xpZW50X2lkIjoia2d0and0Y2xpZW50aWQifQ.42DwaJjeX5WtegFsf4Iipr0Wa_YTD_D_vyh6TqWPMPI
 
 ###

@@ -9,6 +9,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Service
+import java.util.stream.Collectors
 
 
 @Service("SpringUserDetailsService")
@@ -33,7 +34,7 @@ class SpringUserDetailsService @Lazy constructor(private val accountDtoService: 
         val accountNonLocked = true
         return account.id?.let {
             SpringUser(
-                it, account.username, account.password,
+                it, account.username, account.password, account.firstName,
                 enabled, accountNonExpired, credentialsNonExpired,
                 accountNonLocked, authorities ?: mutableSetOf()
             )
@@ -41,11 +42,9 @@ class SpringUserDetailsService @Lazy constructor(private val accountDtoService: 
     }
 
     private fun buildUserAuthority(userRoles: Set<Role>): List<GrantedAuthority> {
-        val setAuths: MutableSet<GrantedAuthority> = HashSet()
-        for (userRole in userRoles) {
-            setAuths.add(SimpleGrantedAuthority(userRole.name))
-        }
-        return ArrayList(setAuths)
+        return userRoles.stream().map { userRole ->
+            SimpleGrantedAuthority(userRole.name)
+        }.collect(Collectors.toList())
     }
 
 }

@@ -19,12 +19,17 @@ class AccountDtoService(
         return accountMapper.toDto(accountRepository.findByUsername(username).orElse(null))
     }
 
-    override fun createAccount(username: String, password: String): AccountDto? {
+    override fun createAccount(dto: AccountDto): AccountDto? {
+        if(dto.id != null)
+            throw Exception("Can't create with predefined ID.")
+
+        if(dto.roles.isEmpty())
+            throw Exception("Have to contain at least one role!")
+
+        dto.password = passwordEncoder.encode(dto.password)
+
         val account = Account()
-        account.roles = mutableSetOf(Role.ADMINISTRATOR)
-        account.enabled = true
-        account.password = passwordEncoder.encode(password)
-        account.username = username
+        accountMapper.updateEntity(dto, account)
         return accountMapper.toDto(accountRepository.save(account))
     }
 }

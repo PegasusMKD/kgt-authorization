@@ -6,10 +6,7 @@ import finki.ukim.kgt.kgtauthorization.usermodels.JwtUser
 import finki.ukim.kgt.kgtauthorization.usermodels.SpringUser
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.annotation.AuthenticationPrincipal
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/authorization")
@@ -21,8 +18,8 @@ class AuthorizationController(private val accountService: AccountService) {
     }
 
     @PostMapping("/register")
-    fun register(@RequestParam username: String, @RequestParam password: String): ResponseEntity<AccountDto> {
-        return ResponseEntity.ok(accountService.createAccount(username, password))
+    fun register(@RequestBody account: AccountDto): ResponseEntity<AccountDto> {
+        return ResponseEntity.ok(accountService.createAccount(account))
     }
 
 }

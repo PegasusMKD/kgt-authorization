@@ -8,6 +8,7 @@ class SpringUser(
     val id: String,
     username: String?,
     password: String?,
+    val firstName: String?,
     enabled: Boolean,
     accountNonExpired: Boolean,
     credentialsNonExpired: Boolean,

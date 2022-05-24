@@ -7,5 +7,7 @@ data class AccountDto(
     var username: String? = null,
     var password: String? = null,
     var enabled: Boolean = true,
-    var roles: Set<Role>? = mutableSetOf()
+    var firstName: String? = null,
+    var lastName: String? = null,
+    var roles: Set<Role> = mutableSetOf()
 )
